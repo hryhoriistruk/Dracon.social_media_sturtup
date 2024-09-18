@@ -1,3 +1,5 @@
+package com.example.socialmedia;
+
 import java.util.EnumSet;
 import java.util.logging.Logger;
 import java.util.concurrent.ExecutorService;

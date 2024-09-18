@@ -1,3 +1,5 @@
+package com.example.socialmedia;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

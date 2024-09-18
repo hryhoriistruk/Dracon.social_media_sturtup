@@ -1,3 +1,5 @@
+package com.example.socialmedia;
+
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.ArrayList;

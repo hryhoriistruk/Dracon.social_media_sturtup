@@ -1,3 +1,5 @@
+package com.example.socialmedia;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;

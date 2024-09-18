@@ -1,3 +1,5 @@
+package com.example.socialmedia;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
