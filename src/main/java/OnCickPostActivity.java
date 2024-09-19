@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class OnCickPostActivity extends AppCompatActivity {
+public class OnCickPostActivity extends AppCompatActivity implements test.OnCickPostActivity {
     private ImageView ClickPostImage;
     private TextView ClickPostDescription;
     private Button EditPostButton;
@@ -39,26 +39,31 @@ public class OnCickPostActivity extends AppCompatActivity {
     private long deleted_posts_count;
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         updateUserStatus("online");
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         updateUserStatus("online");
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         updateUserStatus("online");
     }
 
+    @Override
+    public <Bundle> void onCreate(Bundle savedInstanceState) {
+
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_cick_post);
         mAuth = FirebaseAuth.getInstance();
@@ -109,6 +114,7 @@ public class OnCickPostActivity extends AppCompatActivity {
         });
 
     }
+    @Override
     public void updateUserStatus(String state){
         String saveCurrentDate,saveCurrentTime;
         Calendar calFordDate = Calendar.getInstance();
@@ -125,7 +131,8 @@ public class OnCickPostActivity extends AppCompatActivity {
         UsersRef.child(currentUserId).child("userState").updateChildren(currentStateMap);
     }
 
-    private void EditPostFunction(String description) {
+    @Override
+    public void EditPostFunction(String description) {
         AlertDialog.Builder builder = new AlertDialog.Builder(OnCickPostActivity.this);
         builder.setTitle("Edit Post");
         final EditText inputField = new EditText(OnCickPostActivity.this);
@@ -150,7 +157,8 @@ public class OnCickPostActivity extends AppCompatActivity {
 
     }
 
-    private void DeletePostFunction() {
+    @Override
+    public void DeletePostFunction() {
         ClickPostRef.removeValue();
         deletedPostsCount.addValueEventListener(new ValueEventListener() {
             @Override
@@ -171,7 +179,8 @@ public class OnCickPostActivity extends AppCompatActivity {
         SendUserToMainActivity();
         Toast.makeText(this, "Post deleted successfully", Toast.LENGTH_SHORT).show();
     }
-    private void SendUserToMainActivity() {
+    @Override
+    public void SendUserToMainActivity() {
         Intent mainIntent = new Intent(OnCickPostActivity.this,MainActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         finish();
