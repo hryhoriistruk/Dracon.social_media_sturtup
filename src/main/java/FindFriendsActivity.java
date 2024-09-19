@@ -28,7 +28,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class FindFriendsActivity extends AppCompatActivity {
+public class FindFriendsActivity extends AppCompatActivity implements test.FindFriendsActivity {
     private Toolbar mtoolbar;
     private FirebaseAuth mAuth;
     private TextView SearchInputText;
@@ -56,7 +56,7 @@ public class FindFriendsActivity extends AppCompatActivity {
         updateUserStatus("online");
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected <Bundle> void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
         mtoolbar = (Toolbar)findViewById(R.id.find_friends_toolbar);

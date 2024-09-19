@@ -1,4 +1,3 @@
-import java.util.EnumSet;
 import java.util.logging.Logger;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -11,7 +10,7 @@ public class NotificationSystem {
         EMAIL, PUSH, IN_APP
     }
 
-    public static void sendNotification(UserProfile user, String message, EnumSet<NotificationType> types) {
+    public static void sendNotification(UserProfile user, String message) {
         if (user == null || message == null || message.isEmpty()) {
             LOGGER.warning("Invalid notification parameters");
             return;
@@ -23,6 +22,7 @@ public class NotificationSystem {
         }
 
         executorService.submit(() -> {
+            NotificationType[] types = new NotificationType[0];
             for (NotificationType type : types) {
                 try {
                     switch (type) {
