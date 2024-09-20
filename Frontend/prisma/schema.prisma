@@ -1,0 +1,302 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Example {
+  id String @id @default(cuid())
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String  @db.Text
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String? @db.Text
+  scope                    String? @db.Text
+  id_token                 String? @db.Text
+  session_state            String? @db.Text
+  refresh_token_expires_in Int?
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String   @db.Text
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                             String                           @id @default(cuid())
+  name                           String?                          @db.Text
+  email                          String?                          @unique
+  emailVerified                  DateTime?
+  image                          String?                          @db.Text
+  bannerImage                    String?                          @db.Text
+  bio                            String                           @default("") @db.Text
+  accounts                       Account[]
+  sessions                       Session[]
+  followedBy                     User[]                           @relation("UserFollows")
+  following                      User[]                           @relation("UserFollows")
+  posts                          Post[]                           @relation(name: "createdPosts")
+  comments                       Comment[]
+  likedPosts                     PostLike[]
+  likedComments                  CommentLike[]
+  bookmarks                      Bookmark[]
+  communities                    UserCommunity[]
+  mentions                       Mention[]
+  favouriteCommunities           FavouriteCommunity[]
+  sharedPost                     UserShare[]
+  notifications                  Notification[]
+  // NotificationMention     NotificationMention[]
+  notificationStartFollow        NotificationStartFollow[]
+  notificationCommunityNewMember NotificationCommunityNewMember[] @relation("userNotificationCommunityNewMember")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Post {
+  id                  String                @id @default(cuid())
+  content             String?               @db.VarChar(280)
+  user                User                  @relation(name: "createdPosts", fields: [userId], references: [id], onDelete: Cascade)
+  userId              String                @db.Text
+  comments            Comment[]
+  likes               PostLike[]
+  bookmarkedBy        Bookmark[]
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  images              Image[]               @relation(name: "addedImages")
+  isDeleted           Boolean               @default(false)
+  tags                PostTag[]
+  shareParentId       String?               @db.Text
+  shareParent         Post?                 @relation("Share", fields: [shareParentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  shares              Post[]                @relation("Share")
+  community           Community?            @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  communityId         String?               @db.Text
+  mentions            Mention[]
+  link                String?
+  sharedBy            UserShare[]
+  NotificationMention NotificationMention[] @relation(name: "notificationMention")
+}
+
+model Mention {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  isRead    Boolean  @default(false)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  notificationMention            NotificationMention?
+  notificationStartFollow        NotificationStartFollow?
+  notificationCommunityNewMember NotificationCommunityNewMember?
+  notificationPostComment        NotificationPostComment?
+  notificationCommentReply       NotificationCommentReply?
+}
+
+model NotificationMention {
+  id String @id @default(cuid())
+
+  notification   Notification @relation(fields: [notificationId], references: [id])
+  notificationId String       @unique
+
+  postId String
+  post   Post   @relation(name: "notificationMention", fields: [postId], references: [id], onDelete: NoAction)
+
+  // mentionedUserId String
+  // mentionedUser   User   @relation(fields: [mentionedUserId], references: [id], onDelete: NoAction)
+}
+
+model NotificationStartFollow {
+  id String @id @default(cuid())
+
+  notification   Notification @relation(fields: [notificationId], references: [id])
+  notificationId String       @unique
+
+  userIdNotificationStartFollow String
+  userNotificationStartFollow   User   @relation(fields: [userIdNotificationStartFollow], references: [id], onDelete: NoAction)
+}
+
+model NotificationCommunityNewMember {
+  id             String       @id @default(cuid())
+  notification   Notification @relation(fields: [notificationId], references: [id])
+  notificationId String       @unique
+
+  communityId String
+  community   Community @relation(name: "communityNotificationCommunityNewMember", fields: [communityId], references: [id], onDelete: NoAction)
+
+  userId String
+  user   User   @relation(name: "userNotificationCommunityNewMember", fields: [userId], references: [id], onDelete: NoAction)
+}
+
+model NotificationPostComment {
+  id             String       @id @default(cuid())
+  notification   Notification @relation(fields: [notificationId], references: [id])
+  notificationId String       @unique
+
+  commentId String
+  comment   Comment @relation(name: "commentNotificationPostComment", fields: [commentId], references: [id], onDelete: NoAction)
+}
+
+model NotificationCommentReply {
+  id             String       @id @default(cuid())
+  notification   Notification @relation(fields: [notificationId], references: [id])
+  notificationId String       @unique
+
+  commentId String
+  comment   Comment @relation(name: "commentNotificationCommentReply", fields: [commentId], references: [id], onDelete: NoAction)
+}
+
+model UserShare {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([userId, postId])
+}
+
+model Image {
+  id          String @id @default(cuid())
+  url         String @db.Text
+  fallbackUrl String @db.Text
+  alt         String @db.Text
+  post        Post   @relation(name: "addedImages", fields: [postId], references: [id], onDelete: Cascade)
+  postId      String @db.Text
+  width       Int
+  height      Int
+}
+
+model Comment {
+  id                       String                     @id @default(uuid())
+  message                  String                     @db.Text
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  user                     User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                   String                     @db.Text
+  post                     Post                       @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId                   String                     @db.Text
+  likes                    CommentLike[]
+  parent                   Comment?                   @relation("ParentChild", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children                 Comment[]                  @relation("ParentChild")
+  parentId                 String?
+  isDeleted                Boolean                    @default(false)
+  notificationPostComment  NotificationPostComment[]  @relation(name: "commentNotificationPostComment")
+  notificationCommentReply NotificationCommentReply[] @relation(name: "commentNotificationCommentReply")
+}
+
+model PostLike {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([userId, postId])
+}
+
+model CommentLike {
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  commentId String
+  comment   Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@id([userId, commentId])
+}
+
+model Bookmark {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([userId, postId])
+}
+
+model Tag {
+  name  String    @id @unique
+  color String
+  posts PostTag[]
+}
+
+model PostTag {
+  tagName String
+  tag     Tag    @relation(fields: [tagName], references: [name], onDelete: Cascade)
+  postId  String
+  post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagName])
+}
+
+model Community {
+  id          String               @id @default(uuid())
+  name        String               @unique @db.VarChar(100)
+  image       String               @default("") @db.Text
+  bannerImage String               @default("") @db.Text
+  description String               @default("") @db.Text
+  posts       Post[]
+  members     UserCommunity[]
+  favouriteBy FavouriteCommunity[]
+  categoryId  String
+  category    Category             @relation(fields: [categoryId], references: [id])
+
+  notificationCommunityNewMember NotificationCommunityNewMember[] @relation("communityNotificationCommunityNewMember")
+}
+
+model FavouriteCommunity {
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, communityId])
+}
+
+model Category {
+  id         String      @id @default(uuid())
+  name       String      @unique
+  comunities Community[]
+}
+
+model UserCommunity {
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role        Role      @default(USER)
+
+  @@id([userId, communityId])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
