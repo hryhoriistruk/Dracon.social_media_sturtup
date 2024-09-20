@@ -1,68 +1,73 @@
-# SocialMediaPlus - Elevating Social Networking to New Heights 🌐🚀
+# Social Network
 
-Welcome to the future of social media with SocialMediaPlus! Immerse yourself in a world where language barriers fade away, and every moment is shared vividly. From advanced message translation to rich media support, SocialMediaPlus isn't just an app – it's a revolution in digital social interaction.
+## Overview
 
-## 🚀 Exciting Features:
-- **Rich Media Posts:** Bring your stories to life with video and image posts.
-- **Real-time Notifications:** Stay in the loop with instant alerts for messages and interactions.
-- **Seamless Firebase Integration:** Experience smooth and reliable data handling.
-- **Lightning-fast Performance:** Enjoy a swift, seamless app experience.
-- **Intuitive Interface:** Navigate effortlessly through a user-friendly platform.
-- **Automatic Language Detection:** Understand every word, no matter the language.
-- **Powerful In-App Translation:** Communicate globally without linguistic boundaries.
+Social Media App allows users to share their moments with others and find people with the same passions
 
-## 📱 App Previews: See It in Action!
-### Dive Into Login & Registration
-<img src="https://user-images.githubusercontent.com/62241386/168599243-a99f54bb-5f5c-46b6-9ff1-7924be49abb3.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168599251-eef09c1e-8fa3-4b09-9eed-7b293a073091.png" width="200">&nbsp;
+Implemented functionalities:
+- Login through magic links or other social media accounts
+- Ability to share posts with photos and links
+- Ability to add tags and mention other users in posts 
+- Ability to Like, comment and share posts
+- Ability to follow other users
+- Infinite feed with posts of people you follow
+- Groups that allow you to find users with the same passions 
+- Explore section, where you can find other users or groups that may be of interest to you.
+- Notification system, which will let you know when someone e.g. starts following you or add comment on your post
+- Dark mode
 
-### Discover the Dynamic Dashboard
-<img src="https://user-images.githubusercontent.com/62241386/168599864-2bd66ae6-c217-4b7a-8b98-b4a4726a576c.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168599853-cd597c2e-c3e1-441f-9131-1bfbff27dbdd.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168599842-42a9eeba-a299-41fc-a47a-46bbdd106e54.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168599867-a6988c7d-cd10-4acc-bda7-342b1d4f1772.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168599887-860da2f1-f16b-4ad7-89e7-e6c64a69811c.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168599899-e39652f2-4d0e-4662-bc65-f67eedf95de0.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168599913-b17e8776-defc-4740-847d-632f9dbb8fb7.png" width="200">&nbsp;
+## Build with
 
-### Explore Post Translation
-<img src="https://user-images.githubusercontent.com/62241386/168600950-83df8cc9-acc4-48a2-96dc-e5badbdb6273.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168600946-152699b8-9884-4698-97db-0f17344c3142.png" width="200">&nbsp;
+- Next.js
+- TypeScript
+- TailwindCSS
+- Prisma
+- NextAuth
+- TRPC
+- PlanetScale
+- Cloudinary
+- Vercel
 
-### Experience the Engaging Messenger
-<img src="https://user-images.githubusercontent.com/62241386/168601389-842751e1-6d02-46ab-9d6f-7be8e3a54d72.png" width="200">&nbsp;
-<img src="https://user-images.githubusercontent.com/62241386/168601369-807f84e0-b607-41be-8e77-b89a7bd473f6.png" width="200">&nbsp;
+## Links
 
-### Navigate through Notifications
-<img src="https://user-images.githubusercontent.com/62241386/168601413-f506f843-56cf-4612-a195-6cdf3e212f39.jpg" width="200">&nbsp;
+- [live demo](https://social-network.mlatka9.vercel.app/)
+- [github repo](https://github.com/mlatka9/twitter-clone)
 
-## 🛠️ Crafted With:
-- **Kotlin:** The cornerstone for a solid and efficient app.
-- **MVVM & Clean Architecture:** Emphasizing maintainability and scalability.
-- **Dagger Hilt & LiveData:** For streamlined dependency injection and data management.
-- **Coroutines:** Ensuring fluid and responsive tasks.
-- **Navigation Component:** Simplifying app navigation.
-- **Glide & ExoPlayer:** Mastering media loading and playback.
-- **Firebase Cloud Messaging:** For prompt and reliable user notifications.
+## Screenshots
 
-## 🤖 Advanced Machine Learning Features:
-- **Auto Language Recognition:** Effortlessly identify text languages.
-- **Text Translation:** Seamlessly bridge languages, enhancing communication.
+![twitter-clone-mlatka9 vercel app_](https://user-images.githubusercontent.com/72691985/195369325-65c7985c-0222-4411-9312-ff12a7a0492f.png)
+![s2](https://user-images.githubusercontent.com/72691985/195369341-bd726523-88ff-4869-a677-2ec07b3aae74.png)
+![s3](https://user-images.githubusercontent.com/72691985/195369352-04d7f832-329c-4e2c-9f3b-0fdf2a82608e.png)
 
-## 📲 Try It Yourself: Get the App!
-Curious to see SocialMediaPlus in action? Download the APK and embark on a new social media journey:
-[Download APK](https://drive.google.com/file/d/1pZtHJm932U-v_AyQ3BVV1Y6m-xNCVly-/view?usp=sharing)
 
-## Setting Up Firebase
-Ready to customize SocialMediaPlus? Set up Firebase for your project:
-1. **Create a Firebase Project:** Head to [Firebase Console](https://console.firebase.google.com/), click "Add Project", and follow the setup.
-2. **Add Firebase to Your App:** Click the Android icon, register with your package name, and download `google-services.json` to your `app/` directory.
-3. **Configure Firebase Products:** Activate necessary services like Firestore, Authentication, etc.
-4. **Launch Your Version:** With Firebase ready, build and run your customized SocialMediaPlus.
+## Install
 
----
+1. Clone repository
+```
+git clone https://github.com/mlatka9/twitter-clone.git
+```
 
-## ⭐ Support SocialMediaPlus
-Impressed by SocialMediaPlus? Show your support with a ⭐ on GitHub! and follow me for more projects. Your encouragement fuels our passion for continuous innovation.
+2. Go to project directory
+```
+cd twitter-clone
+```
 
-**SocialMediaPlus: Connect, Share, Explore – The World Without Barriers. 🌍**
+3. Install dependencies
+```
+npm install
+```
+
+4. Create .env file (see .env.example)
+
+```
+echo "" > .env (for windows) touch .env (for unix)
+```
+
+5. Run server
+```
+npm run dev
+```
+
+## Acknowledgement
+
+The app design was inspired by the [devchallenges.io task](https://devchallenges.io/challenges/rleoQc34THclWx1cFFKH)

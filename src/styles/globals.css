@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+  @apply dark:bg-primary-dark-100 min-h-screen bg-primary-100 dark:text-primary-dark-800;
+}
+
+*:focus-visible {
+  @apply outline-0 ring;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  /* scrollbar-color: #bbb7c8 #ffffff; */
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  @apply md:w-3;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-white dark:bg-primary-dark-200;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-primary-dark-300 border-2 border-white dark:border-primary-dark-200 border-solid  rounded-xl;
+}
+
+@layer {
+  .scroll-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .no-scroll-shake {
+    padding-left: calc(100vw - 100%);
+  }
+  .no-scroll-header {
+    padding-right: calc(-1 * (100vw - 100%) + 34px) !important;
+  }
+}
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -15px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 15px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  margin-bottom: 15px;
+}
