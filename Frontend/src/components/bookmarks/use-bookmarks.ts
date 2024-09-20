@@ -1,4 +1,4 @@
-import { useUserBookmarkedPostsQuery } from '../../hooks/query';
+import { useUserBookmarkedPostsQuery } from '@/hooks/query';
 
 const useBookmarks = () => {
   const { data, fetchNextPage, hasNextPage, isSuccess } =
