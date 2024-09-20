@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "815434476856",
+    "project_id": "dracon-c1534",
+    "storage_bucket": "dracon-c1534.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815434476856:android:3c986b9f5b268603af25cd",
+        "android_client_info": {
+          "package_name": "com.dracon.dracon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2d96nYr8fOvQog3xjaXCEt1mtMy6-aH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
