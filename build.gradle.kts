@@ -9,6 +9,7 @@ plugins {
 
     id ("com.google.dagger.hilt.android") version "2.50" apply false
     id("com.android.library") version "8.6.1" apply false
+    id("com.google.firebase.crashlytics") version "3.0.2" apply false
 
 
 }

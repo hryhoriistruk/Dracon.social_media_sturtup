@@ -14,6 +14,7 @@ plugins {
     id("com.google.gms.google-services")
 
     id("com.google.devtools.ksp")
+    id("com.google.firebase.crashlytics")
 
 
 }
@@ -81,6 +82,7 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":auth"))
+    implementation("com.google.firebase:firebase-crashlytics:19.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
