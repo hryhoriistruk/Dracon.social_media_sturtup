@@ -70,6 +70,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    buildToolsVersion = "34.0.0"
 
     kapt {
         correctErrorTypes =  true
@@ -84,8 +85,8 @@ dependencies {
     implementation(project(":auth"))
     implementation("com.google.firebase:firebase-crashlytics:19.1.0")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
     //Dagger - Hilt
     implementation ("com.google.dagger:hilt-android:2.50")

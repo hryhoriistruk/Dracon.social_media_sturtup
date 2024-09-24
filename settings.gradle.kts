@@ -27,3 +27,4 @@ include(":auth")
 include(":core")
 include(":home")
 
+include(":mylibrary")

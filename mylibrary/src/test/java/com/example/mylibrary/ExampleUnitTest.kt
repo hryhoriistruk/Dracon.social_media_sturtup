@@ -1,4 +1,4 @@
-package com.example.common
+package com.example.mylibrary
 
 import org.junit.Test
 
@@ -13,9 +13,5 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
-    }
-
-    private fun assertEquals(i: Int, i1: Int) {
-
     }
 }

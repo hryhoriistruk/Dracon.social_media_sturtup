@@ -54,11 +54,11 @@ android {
 dependencies {
 
     api("androidx.core:core-ktx:1.13.1")
-    api("androidx.appcompat:appcompat:1.6.1")
+    api("androidx.appcompat:appcompat:1.7.0")
     api("com.google.android.material:material:1.12.0")
     testApi("junit:junit:4.13.2")
-    androidTestApi("androidx.test.ext:junit:1.1.5")
-    androidTestApi("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestApi("androidx.test.ext:junit:1.2.1")
+    androidTestApi("androidx.test.espresso:espresso-core:3.6.1")
     api("androidx.legacy:legacy-support-v4:1.0.0")
 
     
@@ -77,9 +77,9 @@ dependencies {
     api("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
     api ("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
     // Fragment KTX for viewModels()
-    api("androidx.fragment:fragment-ktx:1.7.1")
+    api("androidx.fragment:fragment-ktx:1.8.3")
     // Activity KTX for viewModels()
-    api("androidx.activity:activity-ktx:1.9.0")
+    api("androidx.activity:activity-ktx:1.9.2")
 
 
     //Dagger - Hilt
@@ -89,8 +89,8 @@ dependencies {
 
 
     // Navigation Components
-    api("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    api("androidx.navigation:navigation-ui-ktx:2.7.7")
+    api("androidx.navigation:navigation-fragment-ktx:2.8.1")
+    api("androidx.navigation:navigation-ui-ktx:2.8.1")
 
     // Coroutines
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
@@ -111,7 +111,7 @@ dependencies {
     /**Design*/
     // Glide
     api("com.github.bumptech.glide:glide:4.16.0")
-    kapt("com.github.bumptech.glide:compiler:4.15.1")
+    ksp("com.github.bumptech.glide:ksp:4.15.1")
 
     // SDP
     api("com.intuit.sdp:sdp-android:1.1.1")
